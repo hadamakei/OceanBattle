@@ -2,14 +2,14 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_YELLOW
+from code.Const import WIN_WIDTH, COLOR_ORANGE, MENU_OPTION, COLOR_WHITE, COLOR_YELLOW, COLOR_DARK_BLUE, COLOR_PURPLE
 
 
 #criar janela do menu com imagem de background
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/menuBg.png')
+        self.surf = pygame.image.load('./asset/menuBG.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
 
@@ -20,8 +20,8 @@ class Menu:
         while True:
             # desenho das imagens
             self.window.blit(source=self.surf, dest=self.rect)  # manda a imagem para o retângulo da janela do menu
-            self.menu_text(90, "Ocean", COLOR_ORANGE,((WIN_WIDTH / 2), 70)) # exibe o texto do menu
-            self.menu_text(80, "Battle", COLOR_ORANGE, ((WIN_WIDTH / 2), 120))
+            self.menu_text(90, "Ocean", COLOR_PURPLE,((WIN_WIDTH / 2), 70)) # exibe o texto do menu
+            self.menu_text(80, "Battle", COLOR_PURPLE, ((WIN_WIDTH / 2), 120))
 
             # texto exibição de opções do menu
             for i in range(len(MENU_OPTION)):
