@@ -6,6 +6,5 @@ class Enemy(Entity):
         super().__init__(name, position)  # construtor do Enemy herdado do Entity
 
     def move(self,):
-        self.rect.centerx -= ENTITY_SPEED[self.name]  # velocidade
-        if self.rect.right <= 0:
-            self.rect.left = WIN_WIDTH
+        self.rect.centerx -= ENTITY_SPEED[self.name]  # movimento do inimigos
+
