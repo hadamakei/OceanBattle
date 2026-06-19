@@ -33,7 +33,7 @@ class Level:
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # Checar condição de vitória
 
     def run(self, player_score: list[int] ):
-        pygame.mixer.music.load('./asset/laser_retro_arcade_disco_sound.wav')  # adiciona musica level1
+        pygame.mixer.music.load(f'./asset/{self.name}.wav')  # adiciona musica level1
         pygame.mixer.music.play(-1)
         clock = pygame.time.Clock()  # taxa de atualização fps
         while True:
