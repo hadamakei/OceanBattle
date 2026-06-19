@@ -17,6 +17,12 @@ class EntityFactory:
                     list_bg.append(Background(f'level1Bg{i}', (0, 0))) #rodar imagem no background
                     list_bg.append(Background(f'level1Bg{i}', (WIN_WIDTH, 0)))
                 return list_bg
+            case 'level2Bg':  # criação background level 2
+                list_bg = []
+                for i in range(5):
+                    list_bg.append(Background(f'level2Bg{i}', (0, 0)))  # rodar imagem no background
+                    list_bg.append(Background(f'level2Bg{i}', (WIN_WIDTH, 0)))
+                return list_bg
             case 'Player1':                     #Criação jogador 1
                 return Player('Player1', (10, WIN_HEIGHT / 2 - 30))
             case 'Player2':                     # Criação jogador 2
