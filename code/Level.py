@@ -5,8 +5,8 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code import EntityMediator, Player
-from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
+from code.Const import COLOR_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, COLOR_GREEN, COLOR_CYAN, \
+    COLOR_ORANGE, COLOR_PURPLE, COLOR_DARK_BLUE
 from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
@@ -33,13 +33,17 @@ class Level:
         clock = pygame.time.Clock()  # taxa de atualização fps
         while True:
             clock.tick(60)
-            for ent in self.entity_list:
+            for ent in self.entity_list:                                        #lista de entidades
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
                 if isinstance(ent, (Player, Enemy)):
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name == 'Player1':
+                    self.level_text(14, f'Player1 - Health: {ent.health} | Score: {ent.score}', COLOR_PURPLE, (10,25))
+                if ent.name == 'Player2':
+                    self.level_text(14, f'Player2 - Health: {ent.health} | Score: {ent.score}', COLOR_DARK_BLUE, (10,45))
             for event in pygame.event.get():  # fechar janela
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -47,6 +51,7 @@ class Level:
                 if event.type == EVENT_ENEMY:  # Gerar Inimigos
                     choice = random.choice(('Enemy1', 'Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+
 
             # Exibir o texto dos nives
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', COLOR_WHITE,
@@ -58,7 +63,7 @@ class Level:
             pygame.display.flip()
             EntityMediator.verify_collision(entity_list=self.entity_list)  # Colisões
             EntityMediator.verify_health(entity_list=self.entity_list)
-        pass
+
 
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
