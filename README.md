@@ -1,10 +1,11 @@
-![Imagem do Menu](asset/Enemy1.png)
-# 🎮 OceanBattle 🎮
-![Imagem do Menu](asset/Enemy1.png)
 
-###SOBRE
+# 🎮 OCEAN BATTLE 🎮
 
-OceanBattle é um jogo 2D em Python desenvoldido com Pygame. 
+
+## 📖 Sobre
+
+Este projeto foi desenvolvido em Python como parte dos estudos de Programação.
+OceanBattle é um jogo 2D em Python desenvolvido com Pygame. 
 O jogo tem duas fases, e cada fase termina com um evento de timeout.
 Pode ser jogado cooperativo ou competitivo (2 jogadores).
 Pontuação é salva em banco de dados SQLite3.
@@ -12,7 +13,7 @@ Projeto desenvolvido para a disciplina de Linguagem de Programação Aplicada.
 
 ---
 
-## ✨ FUNCIONALIDADES
+## ✨ Funcionalidades
 
 - 🎮 Controle do personagem por teclado
 - 👾 Inimigos com comportamento próprio
@@ -20,21 +21,21 @@ Projeto desenvolvido para a disciplina de Linguagem de Programação Aplicada.
 - ⭐ Sistema de pontuação
 - 💥 Colisões entre objetos
 - 🔊 Efeitos sonoros e música
-- 🏆 Tela de Game Over
+- 🏆 Tela de Pontuação
 
 ---
 
-## MENU
+## Menu
 ![Imagem do Menu](asset/menu_print.png)
 
 ---
 
-## FASE 1
+## Fase 1
 ![Imagem da Fase 1 - 1 Jogador](asset/fase1.png)
 
 ---
 
-## FASE 2 - 2 JOGADORES
+## Fase 2 - 2 Jogadores
 ![Imagem da Fase 2 - 2 Jogadores](asset/fase2.png)
 
 ---
