@@ -2,17 +2,33 @@ import sqlite3
 
 
 class DBProxy:
-    def __init__(self, db_name: str):               #criação do banco de dados
+    def __init__(self, db_name: str):  # criação do banco de dados
         self.db_name = db_name
-        self.connection = sqlite3.connect(db_name)          # conexão com bd
+        self.connection = sqlite3.connect(db_name)  # conexão com bd
         self.connection.execute('''
-                                    CREATE TABLE IF NOT EXISTS dados( 
-                                                                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                                                        name TEXT NOT NULL,
-                                                                        score INTEGER NOT NULL,
-                                                                        date TEXT NOT NULL)
+                                CREATE TABLE IF NOT EXISTS dados
+                                (
+                                    id
+                                    INTEGER
+                                    PRIMARY
+                                    KEY
+                                    AUTOINCREMENT,
+                                    name
+                                    TEXT
+                                    NOT
+                                    NULL,
+                                    score
+                                    INTEGER
+                                    NOT
+                                    NULL,
+                                    date
+                                    TEXT
+                                    NOT
+                                    NULL
+                                )
                                 '''
                                 )
+
     def save(self, score_dict: dict):
         self.connection.execute('INSERT INTO dados (name, score, date) VALUES (:name, :score, :date)', score_dict)
         self.connection.commit()
@@ -21,4 +37,4 @@ class DBProxy:
         return self.connection.execute('SELECT * FROM dados ORDER BY score DESC LIMIT 10 ').fetchall()
 
     def close(self):
-       return self.connection.close()
+        return self.connection.close()

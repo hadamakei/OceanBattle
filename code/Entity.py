@@ -5,7 +5,7 @@ import pygame.image
 from code.Const import ENTITY_HEALTH, ENTITY_DAMAGE, ENTITY_SCORE
 
 
-#classe abstrata background, entidades
+# classe abstrata background, entidades
 class Entity(ABC):
     def __init__(self, name: str, position: tuple):
         self.name = name

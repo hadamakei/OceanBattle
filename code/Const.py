@@ -1,6 +1,5 @@
 import pygame
 
-
 # C
 COLOR_ORANGE = (255, 128, 0)
 COLOR_BLACK = (0, 0, 0)
@@ -121,7 +120,6 @@ ENTITY_SCORE = {
     'Enemy2Shot': 0,
 }
 
-
 # M
 MENU_OPTION = ('NEW GAME 1P',
                'NEW GAME 2P - COOPERATIVE',
@@ -141,13 +139,12 @@ PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
 PLAYER_KEY_SHOOT = {'Player1': pygame.K_RCTRL,
                     'Player2': pygame.K_LCTRL}
 
-#S
+# S
 SPAWN_TIME = 1500
 
-
-#T
+# T
 TIMEOUT_STEP = 100
-TIMEOUT_LEVEL  = 20000
+TIMEOUT_LEVEL = 20000
 
 # W
 WIN_WIDTH = 576

@@ -9,7 +9,7 @@ from code.PlayerShot import PlayerShot
 class EntityMediator:
     @staticmethod
     def __verify_collision_window(ent: Entity):
-        if isinstance(ent, Enemy):                  # verifica colisão, tiros e dimimuí vida da entidade
+        if isinstance(ent, Enemy):  # verifica colisão, tiros e dimimuí vida da entidade
             if ent.rect.right <= 0:
                 ent.health = 0
         if isinstance(ent, PlayerShot):
@@ -20,18 +20,18 @@ class EntityMediator:
                 ent.health = 0
 
     @staticmethod
-    def __verify_collision_entity(ent1, ent2):                          #verifica interação de entidades
-        valid_interaction  = False
-        if isinstance(ent1, Enemy) and isinstance(ent2, PlayerShot):    #jogador no inimigo
+    def __verify_collision_entity(ent1, ent2):  # verifica interação de entidades
+        valid_interaction = False
+        if isinstance(ent1, Enemy) and isinstance(ent2, PlayerShot):  # jogador no inimigo
             valid_interaction = True
         elif isinstance(ent1, PlayerShot) and isinstance(ent2, Enemy):
             valid_interaction = True
-        elif isinstance(ent1, Player) and isinstance(ent2, EnemyShot):    #inimigo no jogador
+        elif isinstance(ent1, Player) and isinstance(ent2, EnemyShot):  # inimigo no jogador
             valid_interaction = True
         elif isinstance(ent1, EnemyShot) and isinstance(ent2, Player):
             valid_interaction = True
 
-        if valid_interaction:                         # se verdadeiro testes de colisão e dano na vida
+        if valid_interaction:  # se verdadeiro testes de colisão e dano na vida
             if (ent1.rect.right >= ent2.rect.left and
                     ent1.rect.left <= ent2.rect.right and
                     ent1.rect.bottom >= ent2.rect.top and
@@ -53,17 +53,17 @@ class EntityMediator:
                     ent.score += enemy.score
 
     @staticmethod
-    def verify_collision(entity_list: list[Entity]):            #verifica colisão compara entre entidades
+    def verify_collision(entity_list: list[Entity]):  # verifica colisão compara entre entidades
 
         for i in range(len(entity_list)):
             entity1 = entity_list[i]
             EntityMediator.__verify_collision_window(entity1)
-            for j in range(i +1, len(entity_list)):
+            for j in range(i + 1, len(entity_list)):
                 entity2 = entity_list[j]
                 EntityMediator.__verify_collision_entity(entity1, entity2)
 
     @staticmethod
-    def verify_health(entity_list: list[Entity]):           # verifica vida zerada da entidade e destrói
+    def verify_health(entity_list: list[Entity]):  # verifica vida zerada da entidade e destrói
         for ent in entity_list:
             if ent.health <= 0:
                 if isinstance(ent, Enemy):

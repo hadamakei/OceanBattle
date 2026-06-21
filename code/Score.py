@@ -10,7 +10,6 @@ from code.Const import COLOR_ORANGE, SCORE_POS, COLOR_PURPLE, MENU_OPTION, COLOR
 from code.DBProxy import DBProxy
 
 
-
 def get_formatted_date():
     now = datetime.datetime.now()
     current_time = now.strftime("%H:%M")
@@ -22,54 +21,53 @@ class Score:
 
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/scoreBG.png').convert_alpha()    #adiciona imagem score
+        self.surf = pygame.image.load('./asset/scoreBG.png').convert_alpha()  # adiciona imagem score
         self.rect = self.surf.get_rect(left=0, top=0)
         pass
 
-    def save(self, game_mode:str, player_score: list[int]):                     # Salva a pontuação
+    def save(self, game_mode: str, player_score: list[int]):  # Salva a pontuação
         pygame.mixer_music.load('./asset/score.wav')  # adicionar música no score
         pygame.mixer_music.play(-1)
-        db_proxy = DBProxy('DBScore')                               # conexão com bd
+        db_proxy = DBProxy('DBScore')  # conexão com bd
         name = ""
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.score_text(50, 'YOU WIN!!!', COLOR_PURPLE,SCORE_POS['Title'])
-            if game_mode == MENU_OPTION[0]:                         # jogo individual
+            self.score_text(50, 'YOU WIN!!!', COLOR_PURPLE, SCORE_POS['Title'])
+            text = 'Enter Player 1 name (4 characters):'
+            score = player_score[0]
+            if game_mode == MENU_OPTION[0]:  # jogo individual
                 score = player_score[0]
-                text = 'Player 1 enter your name(4 characters):'
-            if game_mode == MENU_OPTION[1]:                             # jogo cooperativo
+            if game_mode == MENU_OPTION[1]:  # jogo cooperativo
                 score = (player_score[0] + player_score[1]) / 2
                 text = 'Enter Team name(4 characters):'
-            if game_mode == MENU_OPTION[2]:                             # jogo competição
+            if game_mode == MENU_OPTION[2]:  # jogo competição
                 if player_score[0] >= player_score[1]:
                     score = player_score[0]
-                    text = 'Enter Player 1 name(4 characters):'
                 else:
                     score = player_score[1]
                     text = 'Enter Player 2 name(4 characters):'
-            self.score_text(25,text, COLOR_WHITE, SCORE_POS['EnterName'])
-            for event in pygame.event.get():             #  checagem de eventos
-                if event.type == pygame.QUIT:               # fechar a janela do jogo
+            self.score_text(25, text, COLOR_WHITE, SCORE_POS['EnterName'])
+
+            for event in pygame.event.get():  # checagem de eventos
+                if event.type == pygame.QUIT:  # fechar a janela do jogo
                     pygame.quit()
                     sys.exit()
-                elif event.type == KEYDOWN:                             # checa evento de teclado
+                elif event.type == KEYDOWN:  # checa evento de teclado
                     if event.key == pygame.K_RETURN and len(name) == 4:
                         db_proxy.save({'name': name, 'score': score, 'date': get_formatted_date()})
                         self.show()
                         return
-                    elif event.key == K_BACKSPACE:                      #apaga o nome digitado
+                    elif event.key == K_BACKSPACE:  # apaga o nome digitado
                         name = name[:-1]
-                    else:                                                   # salva entrada de teclado na variável name
+                    else:  # salva entrada de teclado na variável name
                         if len(name) < 4:
                             name += event.unicode
             self.score_text(25, name, COLOR_WHITE, SCORE_POS['Name'])
 
-
-
             pygame.display.flip()
             pass
 
-    def show(self):                                                # Exibe a pontuação na tela de score
+    def show(self):  # Exibe a pontuação na tela de score
         pygame.mixer_music.load('./asset/score.wav')  # adicionar música no score
         pygame.mixer_music.play(-1)
         self.window.blit(source=self.surf, dest=self.rect)
@@ -81,11 +79,11 @@ class Score:
 
         for player_score in list_score:
             id_, name, score, date = player_score
-            self.score_text(25, f'{name }     {score: 05d}     {date }', COLOR_YELLOW,
+            self.score_text(25, f'{name}     {score:05}     {date}', COLOR_YELLOW,
                             SCORE_POS[list_score.index(player_score)])
         while True:
-            for event in pygame.event.get():             #  checagem de eventos
-                if event.type == pygame.QUIT:               # fechar a janela do jogo
+            for event in pygame.event.get():  # checagem de eventos
+                if event.type == pygame.QUIT:  # fechar a janela do jogo
                     pygame.quit()
                     sys.exit()
                 if event.type == KEYDOWN:
@@ -93,8 +91,7 @@ class Score:
                         return
             pygame.display.flip()
 
-
-    #Exibição dos textos
+    # Exibição dos textos
     def score_text(self, text_size: int, text: str, text_color: tuple, text_center_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
