@@ -123,16 +123,15 @@ python main.py
 
 ## 🎯 Controles
 
-| Tecla | Ação | 
-|---------|---------|
-| ↑ ↓ ← → | Movimentação |
-
-| W | Mover para cima | 
-| S | Mover para baixo | 
-| A | Mover para esquerda | 
-| D | Mover para direita | 
-| Ctrl | Atacar | 
-| ESC | Sair do jogo | 
+| Tecla | Ação | Jogador |
+|---------|---------|---------|
+| ↑ ↓ ← → | Movimentação | Jogador 1
+| W | Mover para cima | Jogador 2
+| S | Mover para baixo | Jogador 2
+| A | Mover para esquerda | Jogador 2
+| D | Mover para direita | Jogador 2
+| Ctrl | Atacar | Ambos
+| ESC | Sair do jogo | Ambos
 
 ---
 
