@@ -55,9 +55,9 @@ Projeto desenvolvido para a disciplina de Linguagem de Programação Aplicada.
 jogo/
 │
 ├── assets/
-│   ├── images/
-│   ├── sounds/
-│   └── fonts/
+│   ├── images.png
+│   ├── sounds.wav
+│   
 │
 ├── code/
 │   ├── Const.py
